@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block content %}
+	<div class="jumbotron">
+		<div class="container">
+			<h1>Đội chơi của bạn</h1>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3 text-center">
+				<p>Chào mừng bạn đến với {{ Configs.ctf_name }}!</p>
+				<p>
+					Để tham gia cuộc thi, bạn cần là thành viên của một đội chơi hoặc tạo đội chơi. 
+				</p>
+			</div>
+		</div>
+		{% if integrations.mlc() %}
+		<div class="row">
+			<div class="col-md-6 offset-md-3 text-center">
+				<a class="btn btn-primary w-100" href="{{ url_for('auth.oauth_login') }}">Play with Official Team</a>
+			</div>
+		</div>
+		<div class="row pt-3">
+			<div class="col-md-3 offset-md-3 text-center">
+				<a class="btn btn-light w-100" href="{{ url_for('teams.join') }}">Join Unofficial Team</a>
+			</div>
+			<div class="col-md-3 text-center">
+				<a class="btn btn-light w-100" href="{{ url_for('teams.new') }}">Create Unofficial Team</a>
+			</div>
+		</div>
+		{% else %}
+		<div class="row pt-3">
+			<div class="col-md-3 offset-md-3 text-center">
+				<a class="btn btn-primary w-100" href="{{ url_for('teams.join') }}">Tham gia một đội chơi</a>
+			</div>
+			<div class="col-md-3 text-center">
+				<a class="btn btn-primary w-100" href="{{ url_for('teams.new') }}">Tạo một đội chơi</a>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}
